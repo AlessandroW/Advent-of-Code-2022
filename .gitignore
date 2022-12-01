@@ -1,0 +1,5 @@
+/input/day*.txt
+/build/
+/a.out
+/cmake/
+/.cache/

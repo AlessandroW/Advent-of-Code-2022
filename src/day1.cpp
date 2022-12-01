@@ -1,38 +1,11 @@
 #include <algorithm>
-#include <cstdlib>
-#include <fstream>
 #include <functional>
 #include <iostream>
 #include <iterator>
 #include <numeric>
-#include <sstream>
-#include <string>
-#include <string_view>
-#include <vector>
 
-namespace file {
-std::string read_file(std::string_view path) {
-  std::ifstream file(path.data());
-  std::stringstream buffer;
-  buffer << file.rdbuf();
-  return buffer.str();
-}
-
-std::vector<std::string_view> split(std::string_view strv,
-                                    std::string_view delimiter) {
-  std::vector<std::string_view> parts;
-  std::size_t i = 0;
-  std::size_t match = 0;
-  while (i < strv.length()) {
-    match = strv.find(delimiter, i);
-    if (match == strv.npos)
-      match = strv.length();
-    parts.push_back(strv.substr(i, match - i));
-    i = match + delimiter.length();
-  }
-  return parts;
-}
-} // namespace file
+#include "day1.h"
+#include "file.h"
 
 namespace day1 {
 std::vector<int> extract_calories(std::string_view path) {
@@ -67,4 +40,3 @@ void solve(std::string_view path) {
 }
 } // namespace day1
 
-int main() { day1::solve("input/day1.txt"); }
