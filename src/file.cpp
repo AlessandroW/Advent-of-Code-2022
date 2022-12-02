@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <sstream>
 
@@ -8,7 +9,7 @@ std::string read_file(std::string_view path) {
   std::ifstream file(path.data());
   std::stringstream buffer;
   buffer << file.rdbuf();
-  return buffer.str();
+  return std::move(buffer).str();
 }
 
 std::vector<std::string_view> split(std::string_view strv,
