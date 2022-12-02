@@ -16,13 +16,8 @@ int to_points(char c) { return static_cast<int>(c - 'A' + 1); }
 bool draw(char elve, char me) { return elve == me; }
 
 bool won(char elve, char me) {
-  if (elve == symbol::scissors and me == symbol::rock)
-    return true;
-  else if (me == symbol::scissors and elve == symbol::rock)
-    return false;
-  else if (elve < me)
-    return true;
-  return false;
+  return (elve == scissors and me == rock) or
+         (not(elve == rock and me == scissors) and elve < me);
 }
 
 int score(char elve, char me) {
@@ -54,7 +49,8 @@ char resolve(char elve, char result) {
   if (result == 'X') {
     if (elve == rock)
       return scissors;
-    return rock + ((elve - rock) - 1) % 3;
+    else
+      return rock + ((elve - rock) - 1) % 3;
   } else if (result == 'Y')
     return elve;
   return rock + (elve - rock + 1) % 3;
