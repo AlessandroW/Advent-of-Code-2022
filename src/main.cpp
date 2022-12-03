@@ -1,4 +1,3 @@
-#include "day1.h"
-#include "day2.h"
+#include "day3.h"
 
-int main() { day2::solve("../input/day2.txt"); }
+int main() { day3::solve("../input/day3.txt"); }
