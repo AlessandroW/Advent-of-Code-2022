@@ -4,11 +4,11 @@
 #include <iostream>
 #include <string>
 #include <string_view>
-#include <set>
+#include <unordered_set>
 
 namespace day6 {
     int get_distinct(std::string_view message, std::size_t count) {
-        std::set<char> marker;
+        std::unordered_set<char> marker;
         for (auto it = message.begin(); it != message.end() - count; ++it) {
             marker.insert(it, it + count);
             if (marker.size() == count) {
