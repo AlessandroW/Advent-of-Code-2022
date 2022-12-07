@@ -32,7 +32,7 @@ void parse_command(std::string_view command, index &index,
     if (dest[0] == '.') { // cd ..
       current_dir = index[current_dir].parent;
     } else if (std::string name =
-                   current_dir + '/' + std::string(dest.begin(), dest.size());
+                   current_dir + '/' + std::string(dest);
                index.contains(name)) {
       current_dir = name;
     } else { // cd dir_name
@@ -43,6 +43,7 @@ void parse_command(std::string_view command, index &index,
   } else if (lines[0][0] == 'l') { // ls
     for (auto it = lines.begin() + 1; it != lines.end(); ++it) {
       if ((*it)[0] != 'd') { // must be a file
+        // This works as the numbers are charcter separated 😂
         index[current_dir].size += std::atoi(file::split(*it, " ")[0].data());
       }
     }
