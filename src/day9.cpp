@@ -74,17 +74,9 @@ void step(std::array<Point, n> &points, std::string_view instruction,
   }
 }
 
-std::size_t solution1(const std::vector<std::string_view> directions) {
+template <size_t n>
+std::size_t solution(std::array<Point, n> points, const std::vector<std::string_view> directions) {
   std::set<std::string> visited;
-  std::array<Point, 2> points;
-  for (const auto &direction : directions) {
-    step(points, direction, visited);
-  }
-  return visited.size();
-}
-std::size_t solution2(const std::vector<std::string_view> directions) {
-  std::set<std::string> visited;
-  std::array<Point, 10> points;
   for (const auto &direction : directions) {
     step(points, direction, visited);
   }
@@ -95,7 +87,7 @@ void solve(std::string_view path) {
   std::string file = file::read_file(path);
   std::vector<std::string_view> directions = file::split(file, "\n");
 
-  std::cout << "Puzzle 1: " << solution1(directions) << '\n';
-  std::cout << "Puzzle 2: " << solution2(directions) << '\n';
+  std::cout << "Puzzle 1: " << solution(std::array<Point, 2>{}, directions) << '\n';
+  std::cout << "Puzzle 2: " << solution(std::array<Point, 10>{}, directions) << '\n';
 }
 } // namespace day9
