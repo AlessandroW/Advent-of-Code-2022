@@ -59,18 +59,6 @@ std::string to_string(const Point &p) {
   return s;
 }
 
-void step(Point &H, Point &T, std::string_view instruction,
-          std::set<std::string> &visited) {
-  char direction = instruction[0];
-  for (int step_size =
-           std::atoi(instruction.substr(1, instruction.size() - 1).data());
-       step_size > 0; --step_size) {
-    H.step(direction);
-    T.follow(H);
-    visited.emplace(to_string(T));
-  }
-}
-
 template <size_t n>
 void step(std::array<Point, n> &points, std::string_view instruction,
           std::set<std::string> &visited) {
