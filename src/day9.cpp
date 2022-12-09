@@ -60,7 +60,7 @@ std::string to_string(const Point &p) {
 }
 
 template <size_t n>
-void step(std::array<Point, n> &points, std::string_view instruction,
+void simulate(std::array<Point, n> &points, std::string_view instruction,
           std::set<std::string> &visited) {
   char direction = instruction[0];
   for (int step_size =
@@ -78,7 +78,7 @@ template <size_t n>
 std::size_t solution(std::array<Point, n> points, const std::vector<std::string_view> directions) {
   std::set<std::string> visited;
   for (const auto &direction : directions) {
-    step(points, direction, visited);
+    simulate(points, direction, visited);
   }
   return visited.size();
 }
